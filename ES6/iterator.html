@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iterator迭代器</title>
+</head>
+<body>
+    
+
+
+    <script>
+        // var iter = makeIterator(['1', '2']);
+        // console.log(iter.next()) 
+        // console.log(iter.next()) 
+
+        // function makeIterator(array){
+        //     var nextIndex = 0;
+        //     return {
+        //         next: function(){
+        //             return nextIndex < array.length ? 
+        //             {value: array[nextIndex++], done: false} : {value: undefined, done: true}
+        //         }
+        //     }
+        // }
+
+        class RangeIterator{
+            constructor(start, stopN){
+                this.value = start;
+                this.stop = stopN
+            }
+            
+            [Symbol.iterator]() {return this}
+
+            next(){
+                var value = this.value;
+                return value < this.stop?
+                {done: false, value: this.value++} : {done: true, value: undefined}
+            }
+        }
+
+        var range = new RangeIterator(0, 3);
+        console.log(range)
+        for(var value of range){
+            console.log(value)
+        }
+    </script>
+</body>
+</html>

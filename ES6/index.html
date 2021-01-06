@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>未知宽高元素水平垂直居中</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .parent2 {
+        height: 300px;
+        width: 300px;
+        text-align: center;
+        background: #FD0C70;
+    }
+
+    .parent2 span {
+        display: inline-block;
+        width: 0;
+        height: 100%;
+        vertical-align: middle;
+        zoom: 1;
+        /*BFC*/
+        *display: inline;
+    }
+
+    .parent2 .child {
+        display: inline-block;
+        color: #fff;
+        zoom: 1;
+        /*BFC*/
+        *display: inline;
+    }
+
+    .parent1 {
+        width: 440px;
+        height: 712px;
+        border: blue 1px solid;
+    }
+
+    .parent1 .dialog {
+        width: 440px;
+        height: 712px;
+        border: 1px solid red;
+        transform: scale(.7);
+    }
+    #firstname::-ms-clear{
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+</style>
+
+<body>
+    
+    <form>
+        <label for="firstname">First name:</label>
+        <input type="text" id="firstname" name="firstname" placeholder="First name">
+        <br>
+        <label for="lastname">Last name:</label>
+        <input type="text" id="lastname" name="lastname" placeholder="Second name">
+      </form>
+
+
+      <div style="display:inline-block;position:relative;">  
+        <div style="position:absolute;right:2px;top:-2px;cursor:pointer;display:none;" class="input_clear">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+               ×
+   </button>
+    </div>  
+        <input type="text" placeholder="请输入" class="input-text w200 form-control" aria-describedby="basic-addon1" name="keyword" id="keyword" style="height:35px;" >  
+      </div>
+</body>
+
+<script>
+
+    
+function detectZoom (){
+  var ratio = 0,
+    screen = window.screen,
+    ua = navigator.userAgent.toLowerCase();
+ 
+   if (window.devicePixelRatio !== undefined) {
+      ratio = window.devicePixelRatio;
+  }
+  else if (~ua.indexOf('msie')) {
+    if (screen.deviceXDPI && screen.logicalXDPI) {
+      ratio = screen.deviceXDPI / screen.logicalXDPI;
+    }
+  }
+  else if (window.outerWidth !== undefined && window.innerWidth !== undefined) {
+    ratio = window.outerWidth / window.innerWidth;
+  }
+ 
+   if (ratio){
+    ratio = Math.round(ratio * 100);
+  }
+ 
+   return ratio;
+};
+let result = detectZoom()
+document.write(result);
+
+
+    // function defineA() {
+    //     var json = {
+    //     };
+    //     if (typeof json.code.dens != "undefined") {
+    //         console.log(111111)
+    //     } else {
+    //         console.log(222)
+    //     }
+    // }
+
+    // defineA()
+</script>
+
+</html>

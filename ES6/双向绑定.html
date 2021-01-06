@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inputModel">
+    <p id="viewContent"></p>
+</body>
+
+<script>
+    var user = {
+        name: "狂奔的蜗牛"
+    };
+    var defalutValue = "狂奔的蜗牛"
+    var inputModel = document.querySelector('#inputModel');
+    var viewText = document.querySelector('#viewContent');
+    inputModel.value = user.name;
+    viewText.textContent = user.name;
+    Object.defineProperty(user, "name", {
+        get: function () {
+            console.log("你是不是来获取值啦");
+            return defaultValue;
+        },
+        set: function (newValue) {
+            console.log("你是不是来设置值啦");
+            defaultValue = newValue;
+            inputModel.value = defaultValue;
+            viewText.textContent = defaultValue;
+        }
+    })
+
+    inputModel.addEventListener("keyup", function () {
+        user.name = this.value;
+    })
+
+    var param = {
+        "a": "1",
+        "msg": {
+            chanleid: "ngsh",
+            staffId: "asdasd112",
+            num: 1212
+        }
+    }
+    
+    console.log(JSON.stringify(param))
+</script>
+
+</html>
