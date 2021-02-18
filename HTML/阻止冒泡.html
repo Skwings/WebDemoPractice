@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li class="item1">1</li>
+        <li class="item2">2</li>
+        <li class="item3">3</li>
+        <li class="item4">4</li>
+        <li class="item5">5</li>
+    </ul>
+</body>
+
+<script>
+    var ele = document.getElementsByTagName('li');
+    for(var i = 0; i < ele.length; i++){
+        (ele[i].onclick = function(){
+            console.log(ele[i].innerHTML)
+        })(i)
+    }
+</script>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button class="btn" onclick="btnFun();">点击新增一条历史记录</button>
+    </div>
+    <script>
+        //监听页面中的hash发生改变时
+        window.addEventListener('hashchange', function (e) {
+            const oldURL = e.oldURL;
+            const newURL = e.newURL;
+            console.log(newURL, oldURL)
+        }, false)
+
+        class HashRouter {
+            currentUrl = ''; //当前url
+            handlers = {};
+
+            constructor() {
+                this.refresh = this.refresh.bind(this);
+                window.addEventListener('load', this.refresh, false);
+                window.addEventListener('hashchange', this.refresh, false);
+            }
+
+            getHashPath(url) {
+                const index = url.indexOf('#');
+                if (index >= 0) {
+                    return url.slice(index + 1)
+                }
+                else {
+                    return '/'
+                }
+            }
+
+            refresh(e) {
+                let curUrl = '';
+                let oldUrl = null;
+                if (e.newURL) {
+                    oldUrl = this.getHashPath(e.oldURL || '');
+                    curUrl = this.getHashPath(e.newURL || '');
+                } else {
+                    curUrl = this.getHashPath(window.location.hash);
+                }
+                this.currentUrl = curUrl;
+            }
+        }
+        function btnFun() {//点击事件
+            // 增加一个历史记录
+            history.pushState('a', null, 'hash与history路由.html?b=1');
+            console.log('增加历史记录后 state的值：', history.state); // a
+        };
+        window.addEventListener('popstate', function () {
+            var state = history.state;//取出state值
+            //注意：在此处时（点击后退按钮时），state的值已经为null
+            // （因为返回时历史记录会被删除，浏览器动作）
+            console.log('点击后退按钮后 state的值：', state); // null
+            //判断，想要执行的操作
+        });
+    </script>
+</body>
+
+</html>

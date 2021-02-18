@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="clg()">点击显示</button>
+    <input type="text" id="inputid">
+</body>
+<script src="../JQ/jquery.js"></script>
+<script>
+    // var obj = {
+    //     name: 'jack',
+    //     age: '18',
+    //     id: 100,
+    //     key: 'abc'
+    // }
+    // var str = ''
+    // for(let key in obj){
+    //     str += key + '=' + obj[key] + '&'
+    // }
+    
+    // console.log(str.substring(0, str.length-1))
+        if(1){
+            var b = 2
+        }
+        console.log(b)
+
+    var res = (function(x, y){
+        [x, y] = [y, x]
+        return {
+            x: x,
+            y: y
+        }
+    })(1, 2)
+    
+    console.log(res)
+    $('#inputid').bind('input propertychange', function () {
+        clg()
+    })
+    var clg = debounce(function () {
+        console.log(1111)
+    }, 1000, 0)
+
+    function debounce(fn, delay, immediate) {
+        var time;
+        return function () {
+            let _this = this;
+            let arg = arguments;
+            if (time) {
+                clearTimeout(time)
+            }
+            if (immediate) {
+                let callNow = !time
+                time = setTimeout(function () {
+                    time = null;
+                }, delay)
+                if (callNow) {
+                    fn.call(_this, arg);
+                }
+            } else {
+                time = setTimeout(function () {
+                    fn.call(_this, arg)
+                }, delay)
+            }
+
+        }
+    }
+</script>
+
+</html>

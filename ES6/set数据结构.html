@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set数据结构</title>
+</head>
+<body>
+    
+    <script>
+        const s = new Set();
+        [1,2,3,4,5].forEach( i => {
+            s.add(i)
+        } )
+
+        for(let i of s){
+            console.log(i)
+        }
+        console.log([...s]) //set转化为数组
+        console.log(Array.from(s))
+        var newArr = [...s].filter(function(value, key){
+            return value > 2
+        })
+
+        //并集
+        let union = new Set([1,2,3], [2,3,4]);
+        console.log(union)
+
+        //交集
+        let b = new Set([3,4,5])
+        let intersect = new Set([1, 2, 3].filter((value) => b.has(value)))
+        console.log(intersect)
+    </script>
+</body>
+</html>
